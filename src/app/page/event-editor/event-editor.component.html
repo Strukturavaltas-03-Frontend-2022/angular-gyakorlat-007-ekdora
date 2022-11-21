@@ -1,0 +1,40 @@
+<div *ngIf="event" class="row">
+  <h3 class="col-6 offset-3 text-center my-2">Event Editor</h3>
+  <div class="col-6 offset-3">
+    <form #eventForm="ngForm" (ngSubmit)="onUpdate(eventForm)">
+      <div class="form-group">
+        <label for="eventName">Name</label>
+        <input id="eventName" name="name" [(ngModel)]="event.name" type="text" class="form-control"
+          required pattern=".{8,}" #eventName="ngModel">
+        <div [hidden]="eventName.valid || eventName.pristine" class="error-message">
+          Please give a name and it should be minimum 8 characters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventDate">Date</label>
+        <input id="eventDate" name="date" [(ngModel)]="event.date" type="text" class="form-control"
+          required #eventDate="ngModel">
+        <div [hidden]="eventDate.valid || eventDate.pristine" class="error-message">
+          Please give a date.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventTime">Time</label>
+        <input id="eventTime" name="time" [(ngModel)]="event.time" type="text" class="form-control"
+          required #eventTime="ngModel">
+        <div [hidden]="eventTime.valid || eventTime.pristine" class="error-message">
+          Please give a time.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventLocation">Location</label>
+        <input id="eventLocation" name="location" [(ngModel)]="event.location" type="text"
+          class="form-control" required #eventLocation="ngModel">
+        <div [hidden]="eventLocation.valid || eventLocation.pristine" class="error-message">
+          Please give a location.
+        </div>
+      </div>
+      <button [disabled]="!eventForm.valid" type="submit" class="btn btn-success">save</button>
+    </form>
+  </div>
+</div>
